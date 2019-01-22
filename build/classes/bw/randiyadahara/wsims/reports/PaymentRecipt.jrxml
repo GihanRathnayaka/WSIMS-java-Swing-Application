@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="320" pageHeight="250" columnWidth="280" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f88becf1-b920-4114-a09b-652582e1c84e">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Date1" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT   p.pno, p.paydate ,p.rs,p.amount payAmount,p.change ,p.invoicescost,p.remain,ip.latedate,ip.latepayment,  ip.totalpayfi, p.change, i.year,i.month,i.total,ip.docno  FROM payment p
+LEFT JOIN invoicepayment ip on  ip.pno =p.pno 
+LEFT JOIN invoice  i on i.docno =ip.docno
+ 
+ WHERE p.deleteyes ='N' and i.deleteyes ='N' and p.pno ='CPNO1']]>
+	</queryString>
+	<field name="pno" class="java.lang.String"/>
+	<field name="paydate" class="java.sql.Date"/>
+	<field name="rs" class="java.math.BigDecimal"/>
+	<field name="payamount" class="java.math.BigDecimal"/>
+	<field name="change" class="java.math.BigDecimal"/>
+	<field name="invoicescost" class="java.math.BigDecimal"/>
+	<field name="remain" class="java.lang.Double"/>
+	<field name="latedate" class="java.lang.Integer"/>
+	<field name="latepayment" class="java.math.BigDecimal"/>
+	<field name="totalpayfi" class="java.math.BigDecimal"/>
+	<field name="year" class="java.lang.Integer"/>
+	<field name="month" class="java.lang.Integer"/>
+	<field name="total" class="java.math.BigDecimal"/>
+	<field name="docno" class="java.lang.String"/>
+	<group name="pno">
+		<groupExpression><![CDATA[$F{pno}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="118" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="17" width="280" height="17" uuid="ebd1f79d-8d66-4c2a-8562-c738fc6eeb16"/>
+				<textElement textAlignment="Center">
+					<font fontName="Cambria Math" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payment Reciept ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="52" y="74" width="42" height="13" uuid="caf9eebf-9938-4ede-85e2-4845b7390db6"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pno}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="238" y="74" width="42" height="13" uuid="6ea20b4a-2aa2-47e4-8a0b-b2fba30aad27"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paydate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="176" y="74" width="62" height="13" uuid="89a94be6-31f6-4d32-846f-e7c443a3ed99"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payment Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="98" width="52" height="20" uuid="c7ecf01c-7ef3-4cba-9cf4-5e4879a5db77"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INV No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="98" width="27" height="20" uuid="6380b95b-5e19-4837-9dff-ac6dbe9ed341"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Year]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="98" width="34" height="20" uuid="6699f51c-3673-4237-b7d1-1977fabad5d2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Month]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="98" width="38" height="20" uuid="573aca06-50a6-498c-ac2e-8c0fe3d1d6fa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Cost]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="98" width="45" height="20" uuid="bfb20ca2-5ce9-4c7e-9452-6c31f4acfd05"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Late Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="98" width="42" height="20" uuid="7e2af227-2a7a-4141-94de-2ff270e7953c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Late Charge]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="238" y="98" width="42" height="20" uuid="1858d55d-c811-437b-a3a9-579a4d36c6a5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total For Invoice]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="74" width="52" height="13" uuid="d4c75931-863a-4f42-bef2-e7822916cd8e"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Voucher No :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="97" width="280" height="1" uuid="b6e699f2-ec0a-4acc-aff9-5c44beef547f"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="34" width="280" height="11" uuid="e824b1a6-fe87-4412-a800-34c12777d3ae"/>
+				<textElement textAlignment="Center">
+					<font fontName="Cambria" size="6"/>
+				</textElement>
+				<text><![CDATA[Randiya Dahara PrajaMula Organization]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="44" width="280" height="11" uuid="fa973a64-518a-4c72-b928-9f4eb4a312b5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Cambria" size="6"/>
+				</textElement>
+				<text><![CDATA[Wewala Wewa Dambulla]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="10" splitType="Stretch">
+			<textField>
+				<reportElement x="238" y="0" width="42" height="10" uuid="932da827-006f-45fc-9397-02865f221b71"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{payamount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="52" y="0" width="27" height="10" uuid="6e01c27f-4976-4352-9362-0d7b6a927ea7"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{year}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="0" width="34" height="10" uuid="49dd0d19-7f9d-43df-9602-6d6cd522feac"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{month}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="52" height="10" uuid="06b04185-981d-4cc8-b99a-e4ab31080489"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{docno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="0" width="38" height="10" uuid="3b446b05-fcce-4e67-a758-45ed22f50877"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="0" width="45" height="10" uuid="4e4d783b-b652-4b12-b9f4-1b9e99c01081"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{latedate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="196" y="0" width="42" height="10" uuid="f9e06b2c-e885-4af0-a33d-75cf15e7e067"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{latepayment}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="67" splitType="Stretch">
+			<textField>
+				<reportElement x="238" y="5" width="42" height="11" uuid="638c658a-2d9e-4862-adf2-8b5f0d18d096"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoicescost}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="16" width="42" height="10" uuid="29d94afe-7104-4e7e-8b84-999c62703f8c"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rs}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="36" width="42" height="10" uuid="7bab7b76-0d25-49f9-88b5-15273a3c1e2f"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{payamount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="26" width="42" height="10" uuid="213fe6fd-745c-429f-a122-4d5c210717d3"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{change}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="238" y="46" width="42" height="10" uuid="0a857644-ad93-4368-b240-fa3c4f9e8108"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remain}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="16" width="238" height="10" uuid="8a156127-e73f-4c91-a729-f309263b9656"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Rs]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="26" width="238" height="10" uuid="a460a62f-76c5-4a61-a6f5-c5142bd201f8"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Change]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="36" width="238" height="10" uuid="5b86b2b6-88af-419a-a23b-b8ef930f25be"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Payment Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="46" width="238" height="10" uuid="6334185f-298e-4141-85d9-e006d37992b3"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Balance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="5" width="238" height="11" uuid="76c5e5f5-59d5-431a-afc0-7ea5b2a25e5c"/>
+				<box>
+					<pen lineStyle="Dashed"/>
+					<topPen lineStyle="Dashed"/>
+					<leftPen lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Invoices Cost]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="280" height="1" uuid="7b47ca7e-3025-429e-996f-b2b501bc1f69"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="56" width="276" height="11" uuid="4994a8f4-18e2-4134-85b2-f36cd5065c9b"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CreatedBy E.G.B Rathnayaka & H.T.D Holuge]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

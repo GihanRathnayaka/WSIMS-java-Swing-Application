@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4e478b36-658c-46a9-a4b0-f78e621fff8a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[
+SELECT i.invoicedate, i.docno,i.billamount,i.year,i.month,i.opbalance,i.total,i.fixcost,i.serviceyes,i.duedate, w.mtstrat,w.mtend ,w.qty ,s.name,si.qty ,si.price ,si.qty ,si.linetotal,c.iwlname ,i.cusno  from invoice i INNER JOIN waterusage w on w.wuno =i.wuno LEFT JOIN invoiceservice si on si.docno  = i.docno left JOIN service s on s.sno =si.sno 
+INNER JOIN customers c  on c.cus_no =i.cusno
+WHERE i.deleteyes ='N' and i.docno ='INVNO1']]>
+	</queryString>
+	<field name="invoicedate" class="java.sql.Date"/>
+	<field name="docno" class="java.lang.String"/>
+	<field name="billamount" class="java.math.BigDecimal"/>
+	<field name="year" class="java.lang.Integer"/>
+	<field name="month" class="java.lang.Integer"/>
+	<field name="opbalance" class="java.math.BigDecimal"/>
+	<field name="total" class="java.math.BigDecimal"/>
+	<field name="fixcost" class="java.math.BigDecimal"/>
+	<field name="serviceyes" class="java.lang.String"/>
+	<field name="duedate" class="java.lang.Integer"/>
+	<field name="mtstrat" class="java.math.BigDecimal"/>
+	<field name="mtend" class="java.math.BigDecimal"/>
+	<field name="qty" class="java.lang.Integer"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="price" class="java.math.BigDecimal"/>
+	<field name="linetotal" class="java.math.BigDecimal"/>
+	<field name="iwlname" class="java.lang.String"/>
+	<field name="cusno" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="444" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="13" width="555" height="31" uuid="c644eeec-0f84-4d89-8731-aa315772ecf6"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Invoice]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="44" width="555" height="20" uuid="205bccf9-df27-4923-b92f-20245662e62d"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Randiya Dahara ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="64" width="555" height="20" uuid="d13d57b7-3ee7-4664-b0a5-f351111c53ac"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Wewala Wewa Dambulla]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="98" width="119" height="20" uuid="ade97225-9d1a-4096-b9f7-6c55024e92a9"/>
+				<textFieldExpression><![CDATA[$F{docno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="98" width="100" height="20" uuid="451406cb-577d-40cd-a745-441ac39bd9ef"/>
+				<text><![CDATA[Invoice No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="98" width="122" height="20" uuid="360aad13-f415-476d-9563-aa19e39cad2d"/>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="416" y="98" width="139" height="20" uuid="b9f50e21-3c81-4904-8365-948ebc3d1dd1"/>
+				<textFieldExpression><![CDATA[$F{invoicedate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="236" width="100" height="20" uuid="b1eadb4a-0341-482e-8fa4-0ccd521adf26"/>
+				<textFieldExpression><![CDATA[$F{year}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="256" width="100" height="20" uuid="9a909010-a546-41a3-aa2c-bc1fb3c468b0"/>
+				<textFieldExpression><![CDATA[$F{month}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="276" width="100" height="20" uuid="577b7fa5-803d-4046-aec2-b9c6131f1327"/>
+				<textFieldExpression><![CDATA[$F{mtstrat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="296" width="100" height="20" uuid="8e999d82-69fa-4368-8386-ab112e5b3549"/>
+				<textFieldExpression><![CDATA[$F{mtend}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="316" width="100" height="20" uuid="403e5bef-19cc-49d4-b365-a38c8dc6e594"/>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="294" y="142" width="122" height="20" uuid="20541745-7c97-46bb-9a84-4cda08cff9cd"/>
+				<text><![CDATA[Customr Name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="416" y="142" width="139" height="20" uuid="62efe142-4eec-4c9f-80b6-33df694d7f82"/>
+				<textFieldExpression><![CDATA[$F{iwlname}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="142" width="100" height="20" uuid="d7d7c129-f9b6-4c23-8d80-3dbdde064db9"/>
+				<text><![CDATA[Customer No]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="142" width="119" height="20" uuid="780138f1-48bd-4b15-b353-663620703db1"/>
+				<textFieldExpression><![CDATA[$F{cusno}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="145" splitType="Stretch"/>
+	</detail>
+	<summary>
+		<band height="74" splitType="Stretch"/>
+	</summary>
+</jasperReport>
