@@ -1,14 +1,7 @@
-node_modules/**
-error.log
-error.log.1
-out/**
-ijse.dump
-ijse.sql
-InventoryManagementSystem.iml
-build.xml
-build.xml
 Jar/**
 build/**
 dist/**
 nbproject/**
 test/**
+build.xml
+manifest.mf
